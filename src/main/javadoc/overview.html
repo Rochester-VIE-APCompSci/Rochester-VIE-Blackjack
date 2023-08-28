@@ -1,0 +1,187 @@
+<body>
+<H1>Competition</H1>
+<p>
+The BlackJack competition involves playing many games of IBM VIE Blackjack. Each game starts with
+an initial amount of money, and a set of {@linkplain com.ibm.vie.blackjack.player.TableRules
+rules}.
+</p>
+<p>
+Many rounds of blackjack are played in a game. In each round, the player makes an initial wager
+and then attempts to create one or more hands that are better than the dealer's hand. If at the
+end of the round, the player's hand is better than the dealer's hand, the hand wins.
+</p>
+<p>
+During game play, a player has the option of
+{@linkplain com.ibm.vie.blackjack.player.PlayerDecision#SPLIT splitting} a hand into two hands.
+This option means that a round will potentially have more than one hand playing against a single
+dealer's hand.
+</p>
+<p>
+After all rounds have completed, the game is over and the final amount of available money is the
+player's score. The winnings from one game are <b>not</b> carried over to the next game in the
+competition.
+</p>
+<p>
+The overall competition winner will be selected from the results of all games played.
+</p>
+
+<H1>Winning</H1> A player wins a hand in the following ways:
+<ul>
+<li>A score of 21 is dealt on the first two cards (called Blackjack) without a dealer blackjack.
+A Blackjack wins more than the player's initial bet.
+For the competition a 2 to 1 rate is always used. On a blackjack, the dealer returns the bet paid, plus the smallest integer greater than or equal to
+the rate multiplied by the bet. For example if the bet is 2 and the player gets a blackjack,
+the player is paid the initial bet ($2) + 2 * the initial bet ($4) or $6 (a profit of $4).</li> 
+<li>The player's final score is higher than the dealer, without exceeding 21.</li>
+<li>The score of the dealer's hand exceeds 21, and the player's hand does not exceed 21</li>
+</ul>
+<H1>Ties</H1>
+<p>
+If a player hand is tied with the dealer's hand, and the player hand does not exceed 21 points,
+the bet for the hand is "pushed" back to the player. The player traditionally neither wins or loses on that hand.
+Although a tie normally does not win or lose money, in our game the dealer will award the player a profit of %50 of the 
+bet for the hand. If the player bets $4 and ties, then the player is awarded $6, for a profit of $2.
+</p>
+<H1>Player Busts</H1>
+<p>
+If the score of a player's hand exceeds 21, the player's hand loses. The dealer does not play unless there
+is at least one player hand that has not busted. In the event that both the dealer and the player hands both exceed 21,
+the player's hand loses.
+</p>
+<H1>Hand Values</H1>
+<ul>
+<li>Aces may be scored as either 1 or 11</li>
+<li>Cards of rank ten, jack, queen, and king are scored as 10</li>
+<li>All other cards are scored based on their rank</li>
+</ul>
+
+<H1>Player Decisions</H1> The player can take one of four actions on the current hand per turn:
+<UL>
+<LI><B>Hit</B> Take another card</LI>
+<LI><B>Stand</B> Do not take another card, the dealer will compete against the current hand "as
+is"</LI>
+<LI><B>Double</B> Doubles the bet and takes exact one more card. This decision is only valid when
+there are two cards in the hand.</LI>
+<LI><B>Split</B> Splits a hand into two hands (Paying the current bet for the extra hand). This
+decision is only valid when there are two cards in the hand and both cards are of the same rank.
+The player will have opportunities to take actions on both of the new hands.</LI>
+</UL>
+
+<H1>Overview and Basic Strategy</H1>
+<p>
+A more complete general overview of the game can be found on
+<a href="https://en.wikipedia.org/wiki/Blackjack">Wikipedia</a>. Our VIE version of the game has
+some slightly more relaxed rules than many casinos. These rules should make it easier (but not
+necessarily easy) for the player to beat the house.
+</p>
+
+<H1>Classes and Interfaces</H1>
+<p>
+Your challenge is to improve upon the {@link student.player.MyPlayer} strategy that IBM has
+provided as a started solution. You'll find many great comments in that class that will
+give you some ideas for implementing a solution. 
+</p>
+<p>
+There are a number of interfaces and classes that your strategy will use to interact with the
+Blackjack framework. These classes are defined in the {@link com.ibm.vie.blackjack.player} package,
+and you should refer to the documentation of that package to see what these classes are and how 
+they work.
+</p>
+
+<H1>Game Flow</H1> An instance of your {@link com.ibm.vie.blackjack.player.PlayerStrategy
+PlayerStrategy} class is created at the start of the game, the same instance is used for the
+entire game. During a game, the framework will iterate playing rounds of blackjack using the
+strategy. For each round:
+<OL>
+<LI>An initial bet is obtained by calling
+{@link com.ibm.vie.blackjack.player.PlayerStrategy#placeInitialBet
+PlayerStrategy#placeInitialBet}</LI>
+<LI>The player's initial hand is dealt, followed by the dealer's initial hand. The dealer's
+initial hand has only one card that is visible to the player (face up).</LI>
+<LI>If either the dealer or player has blackjack, then the outcome is already decided and no
+decisions can be made. If neither the dealer nor the player has blackjack the player will use
+your strategy to decide what to do:
+<OL>
+<LI>A {@link com.ibm.vie.blackjack.player.PlayerDecision PlayerDecision} is obtained for the
+current hand by calling {@link com.ibm.vie.blackjack.player.PlayerStrategy#decideHowToPlayHand
+PlayerStrategy#decideHowToPlayHand}.
+<ul>
+<li>Decisions made by the strategy result in dealing more cards, adjusting bets, and splitting
+hands as appropriate.</li>
+<li>Repeated calls to <code>decideHowToPlayHand</code> continue until all player decisions for
+all hands have been applied.
+
+A hand is "complete" when any of the following is true:
+<UL>
+<LI>The maximum number of points equals 21 (aces count as either 1 or 11)</LI>
+<LI>The minimum number of points exceeds 21 (aces count as 1)</LI>
+<LI>A Stand decision has been made on the hand</LI>
+<LI>A Double Down decision has been made on the hand</LI>
+</UL>
+
+</li>
+</ul>
+</LI>
+<LI>The dealer's turn begins when all player decisions have been made for all player hands.
+<ul>
+<li>If every player hand is a bust, then the dealer does <B>not</B> play.</li>
+<li>Otherwise, the dealer <b>must</b> hit until a score of at least 17 is reached.</li>
+</ul>
+</LI>
+</OL>
+</LI>
+<LI>At the conclusion of the round, the available money is updated considering all bets and
+outcomes.</LI>
+<LI>{@link com.ibm.vie.blackjack.player.PlayerStrategy#decideToWalkAway
+PlayerStrategy#decideToWalkAway} is called to decide whether the player plays another round.</LI>
+<LI>The cards on the table are cleared and placed in the discard tray</LI>
+</OL>
+
+
+<H1>Deck</H1>
+<p>
+The number of decks in use will vary between games of the competition. The number of decks in use
+for the current game will not change and can be obtained by using the
+{@link com.ibm.vie.blackjack.player.GameInfo#getNumberOfDecks() GameInfo#getNumberOfDecks}
+method.
+</p>
+<p>
+The deck of cards is shuffled when a card needs to be drawn, and there are no cards available. In
+this scenario, only the cards in the discard tray are shuffled into the deck. Cards on the table
+remain on the table and will be placed in the discard tray after the end of the round.
+</p>
+
+
+
+<H1>Game End</H1> The game is over when any of the following occur
+<UL>
+<LI>{@link com.ibm.vie.blackjack.player.PlayerStrategy#decideToWalkAway
+PlayerStrategy#decideToWalkAway} returns true</LI>
+<LI>The player has played the maximum number of rounds as specified by
+{@link com.ibm.vie.blackjack.player.GameInfo#getMaxNumRounds GameInfo#getMaxNumRounds}</LI>
+<LI>The player no longer has sufficient available money to cover the minimum bet as specified by
+{@link com.ibm.vie.blackjack.player.GameInfo#getMinBet GameInfo#getMinBet}</LI>
+<LI>An exception is thrown from a method in the
+{@link com.ibm.vie.blackjack.player.PlayerStrategy PlayerStrategy}, or {@link com.ibm.vie.blackjack.player.PlayerStrategy#decideHowToPlayHand decideHowToPlayHand} 
+returns an illegal decision. If this occurs, any bets in progress are awarded to the house.</LI>
+</UL>
+
+<H1>Competition End</H1> The competition ends when all games have finished. The outcome of a
+single game will not impact whether or not future games are played.
+
+
+<H1>Additional Rules</H1>
+<P>
+Some strategies for playing Blackjack are dependent on a few rules and behaviors that have not
+been discussed. These ideas may or may not be important, depending on the solution.
+</p>
+<UL>
+<LI>See {@link com.ibm.vie.blackjack.player.CasinoRules#getDealerHitsOnSoft17
+TableRules#getDealerHitsOnSoft17} for rules concerning the dealer's ability to hit on "soft
+17". In the competition, the dealer will NOT hit on soft 17.</LI>
+<LI>See {@linkplain com.ibm.vie.blackjack.player.CasinoRules#getDeckPenetration
+TableRules#getDeckPenetration} for rules concerning shuffling a deck at the end of a round.
+instead of waiting until a shuffle is necessary to draw a card. In the competition, the deck is shuffled only when absolutely
+ necessary.</LI>
+</UL>
+</body>

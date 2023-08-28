@@ -1,0 +1,83 @@
+{
+"tableConfigs" : [ {
+    "name" : "Don't bet the max",
+    "initialMoney" : 50,
+    "minBet" : 1,
+    "maxBet" : 1000,
+    "numDecks" : 1,
+    "numRounds" : 10000,
+    "deckNumber" : 7793627
+  }, {
+    "name" : "Safe Play",
+    "initialMoney" : 1000,
+    "minBet" : 10,
+    "maxBet" : 150,
+    "numDecks" : 2,
+    "numRounds" : 1000,
+    "deckNumber" : 573259391
+  }, {
+    "name" : "Bold is Beautiful",
+    "initialMoney" : 1000,
+    "minBet" : 20,
+    "maxBet" : 200,
+    "numDecks" : 6,
+    "numRounds" : 1000,
+    "deckNumber" : 674506081
+  }, {
+    "name" : "Count On It",
+    "initialMoney" : 1000,
+    "minBet" : 20,
+    "maxBet" : 200,
+    "numDecks" : 1,
+    "numRounds" : 1000,
+    "deckNumber" : 10915769
+  }, {
+    "name" : "Don't Count On It",
+    "initialMoney" : 500,
+    "minBet" : 10,
+    "maxBet" : 100,
+    "numDecks" : 6,
+    "numRounds" : 1000,
+    "deckNumber" : 11999199
+  }, {
+    "name" : "Sky's The Limit",
+    "initialMoney" : 500,
+    "minBet" : 1,
+    "maxBet" : 100,
+    "numDecks" : 6,
+    "numRounds" : 10000,
+    "deckNumber" : 121015451
+  }, {
+    "name" : "Take Care",
+    "initialMoney" : 1000,
+    "minBet" : 1,
+    "maxBet" : 20,
+    "numDecks" : 4,
+    "numRounds" : 1000,
+    "deckNumber" : 131015897
+  }, {
+    "name" : "Keep Going",
+    "initialMoney" : 1000,
+    "minBet" : 1,
+    "maxBet" : 20,
+    "numDecks" : 4,
+    "numRounds" : 10000,
+    "deckNumber" : 141040657
+  }, {
+    "name" : "Really don't bet the max",
+    "initialMoney" : 100,
+    "minBet" : 1,
+    "maxBet" : 100000,
+    "numDecks" : 1,
+    "numRounds" : 500,
+    "deckNumber" : 151082083
+  }, {
+    "name" : "In It To Win It",
+    "initialMoney" : 500,
+    "minBet" : 1,
+    "maxBet" : 20,
+    "numDecks" : 1,
+    "numRounds" : 10000,
+    "deckNumber" : 161140463
+  } ]
+}

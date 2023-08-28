@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<drjava version="drjava-20140826-r5761">
+  <project autorefresh="false" main="MyPlayer" manifest="" root="" work="">
+    <createjar file="schoolname-firstname-lastname.jar" flags="8"/>
+    <source>
+      <file active="true" name="student/player/MyPlayer.java" package="student.player" timestamp="09-May-2017 16:05:40">
+        <select from="1246" to="1246"/>
+        <scroll column="33" row="0"/>
+      </file>
+    </source>
+    <included/>
+    <excluded/>
+    <collapsed/>
+    <classpath>
+      <file absolute="false" name="../lib/blackjack.jar"/>
+      <file absolute="false" name="../lib/commons-math3-3.6.1.jar"/>
+      <file absolute="false" name="../lib/jackson-annotations-2.9.8.jar"/>
+      <file absolute="false" name="../lib/jackson-core-2.9.8.jar"/>
+      <file absolute="false" name="../lib/jackson-databind-2.9.8.jar"/>
+    </classpath>
+    <breakpoints/>
+    <watches/>
+    <bookmarks/>
+    <preferences/>
+  </project>
+</drjava>

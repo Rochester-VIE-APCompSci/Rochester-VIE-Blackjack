@@ -1,0 +1,15 @@
+{
+ "casinoRules" : {
+    "blackJackPayOut" : 1.5,
+    "payoutForPush" : 0,
+    "dealerHitsOnSoft17" : false,
+    "deckPenetration" : 100,
+    "useRealCasinoRulesWhenOutOfCards" : false
+  },
+
+ "tableConfigs" : [
+  {"name" : "table704", "initialMoney" : 100, "maxBet" : 50, "minBet" : 25, "numDecks" : 1, "numRounds" : 2, "deckNumber" : 1 },
+  {"name" : "table s38", "initialMoney" : 200, "maxBet" : 150, "minBet" : 2, "numDecks" : 2, "numRounds" : 3, "deckNumber" : 2 }
+ 
+ ]
+}

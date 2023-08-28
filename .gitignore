@@ -1,0 +1,14 @@
+target
+bin
+docs
+/analysis_output.csv
+/analysis_summary_output.csv
+/raw_analysis_output.csv
+/solutionGrid.csv
+/consoleOutput.out
+/strategy_summary.csv
+/table_earnings.csv
+
+# Eclipse
+.settings
+.classpath
